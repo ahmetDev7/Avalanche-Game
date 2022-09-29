@@ -49,4 +49,4 @@ The backpack you took with you is in front of you, it survived the avalanche.
 Maybe there is something in your backpack which might be useful.
 """)
 
-typewriterEffTitle(figlet_format("The Avalanche", font = "standard"))
+typewriterEffTitle(figlet_format("The Avalanche", font = "big"))
