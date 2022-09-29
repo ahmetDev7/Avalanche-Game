@@ -1,5 +1,6 @@
 #imports
 from typewriter import *
+from pyfiglet import figlet_format
 
 typewriterEff("""It is a cold, misty day in the Himalaya Mountains and you are trying to hike to the peak of Mount Everest, the highest mountain in the world.
 You are with your companions Peter and Maxwell.""")
@@ -47,3 +48,5 @@ Your mouth is dry and you are hungry.
 The backpack you took with you is in front of you, it survived the avalanche.
 Maybe there is something in your backpack which might be useful.
 """)
+
+typewriterEffTitle(figlet_format("The Avalanche", font = "standard"))
