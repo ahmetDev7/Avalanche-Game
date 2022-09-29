@@ -13,7 +13,7 @@ sleep(0.5)
 
 typewriterEff("""
 
-Maxwell: 'I have no idea! But it does not sound good.'""")
+Maxwell: 'Ey swa luister man wat is die geluid swa'""")
 sleep(0.5)
 
 typewriterEff("""
