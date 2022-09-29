@@ -1,12 +1,5 @@
 #imports
-import sys
-from time import sleep
-
-def typewriterEff(words):
-    for character in words:
-        sleep(0.05)
-        sys.stdout.write(character)
-        sys.stdout.flush()
+from typewriter import *
 
 typewriterEff("""It is a cold, misty day in the Himalaya Mountains and you are trying to hike to the peak of Mount Everest, the highest mountain in the world.
 You are with your companions Peter and Maxwell.""")
