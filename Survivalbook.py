@@ -1,5 +1,35 @@
+Bookopened = False
+currentChapter = None
+
+
+def checkChapter(chapterSelection):
+    if chapterSelection.lower() == "chapter 2" and Bookopened == True:
+        SurvivalBookCh2()
+
+    elif chapterSelection.lower() == "chapter 3" and Bookopened == True:
+        SurvivalBookCh3()
+
+    elif chapterSelection.lower() == "chapter 4" and Bookopened == True:
+        SurvivalBookCh4()
+
+    elif chapterSelection.lower() == "chapter 5" and Bookopened == True:
+        SurvivalBookCh5()
+
+    else:
+        print("Dat is geen optie.")
+        if currentChapter == 1:
+            OpenSurvivalBook()
+        elif currentChapter == 2:
+            SurvivalBookCh2()
+
+
 def OpenSurvivalBook():
-    print( """'Chapter 1. Basic Survival Guide'
+    global Bookopened
+    global currentChapter
+    Bookopened = True
+    currentChapter = 1
+
+    print("""'Chapter 1. Basic Survival Guide'
 The most important thing when surviving is
 food and water. If you find a running water
 source you can use the water and boil it to kill
@@ -8,10 +38,16 @@ You must avoid food from plants because
 these can be poisonous, rather you should try
 to hunt herbivorous animals like deer or cattle
 or aquatic animals like fish.""")
-    if input().lower() == "next page":
+
+    bookInput = input()
+    if bookInput.lower() == "next page":
         SurvivalBookCh2()
-    elif input().lower() == "previous page":
+    elif bookInput.lower() == "previous page":
         print("There are no previous pages")
+    else:
+        chapterSelection = bookInput
+        checkChapter(chapterSelection)
+
 
 def SurvivalBookCh2():
     print("""'Chapter 2. Find shelter'
@@ -28,6 +64,7 @@ inside so your fire will stay put.""")
     elif input().lower() == "previous page":
         OpenSurvivalBook()
 
+
 def SurvivalBookCh3():
     print("""'Chapter 3. Resources'
 Use what you have in your reach. A knife can be used
@@ -43,6 +80,7 @@ from hunger.""")
         SurvivalBookCh4()
     elif input().lower() == "previous page":
         SurvivalBookCh2()
+
 
 def SurvivalBookCh4():
     print("""'Chapter 4. Start a fire'
@@ -61,6 +99,7 @@ tools to start a fire, now you only need a fire source.""")
     elif input().lower() == "previous page":
         SurvivalBookCh3()
 
+
 def SurvivalBookCh5():
     print("""'Chapter 5. Wild animals'
 Be careful of wild animals. Wild animals can be
@@ -72,22 +111,8 @@ berries.""")
         SurvivalBookCh4()
 
 
-Bookopened = False
-
-if input().lower() == "open survivalbook":
+standardInput = input()
+if standardInput.lower() == "open survivalbook":
     OpenSurvivalBook()
-    Bookopened = True
 
-if input().lower() == "chapter 2" and Bookopened == True:
-    SurvivalBookCh2()
-
-if input().lower() == "chapter 3" and Bookopened == True:
-    SurvivalBookCh3()
-
-if input().lower() == "chapter 4" and Bookopened == True:
-    SurvivalBookCh4()
-
-if input().lower() == "chapter 5" and Bookopened == True:
-    SurvivalBookCh5()
-
-#hello
+# hello
