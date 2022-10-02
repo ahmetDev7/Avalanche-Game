@@ -4,10 +4,10 @@ currentLocation = None
 
 
 def startpoint():
-    print("You are standing in front of the mountain at the place you woke up.")
     global currentLocation
     currentLocation = "startpoint"
-    cmd = commands(currentLocation)
+    currentLocationText = "You are standing in front of the mountain at the place you woke up."
+    cmd = commands(currentLocation, currentLocationText)
     if cmd == "north":
         outsideCave()
     elif cmd == "west":
@@ -22,14 +22,17 @@ def river():
 
 
 def outsideCave():
-    print("You are standing in front of a cave, whill you enter it?")
     global currentLocation
     currentLocation = "outsideCave"
-    cmd = commands(currentLocation)
+    currentLocationText = "You are standing in front of a cave, whill you enter it?"
+    cmd = commands(currentLocation, currentLocationText)
     if cmd == "north":
         print("xd")
     elif cmd == "west":
         print("xd")
+    else:
+        print("You can not go there!")
+        outsideCave()
     continueKey()
 
 

@@ -1,8 +1,9 @@
 from colorama import init
 from termcolor import colored
 import os
+from globalmethods import continueKey
 
-holdingCurrentItem = ""
+holdingCurrentItem = "Nothing"
 isBackpackOpen = False
 
 
@@ -24,7 +25,7 @@ def backpack():
         elif backpackinput == "take knife":
             print(colored("You are now holding your knife in your hand.", "green"))
             holdingCurrentItem = "knife"
-            input("Press a key to continue..")
+            continueKey()
         elif backpackinput == "take survival book":
             print("You are now holding your surival book in your hand.")
             holdingCurrentItem = "Survival Book"

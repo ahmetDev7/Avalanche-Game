@@ -5,10 +5,14 @@ from colorama import init
 from termcolor import colored
 
 
-def commands(currentLocation):
+def commands(currentLocation, currentLocationText):
     while True:
         os.system('cls')
-        print(colored(f"You are now at: {currentLocation}", "green"))
+        print(
+            colored(f"Holding current item: {inventory.holdingCurrentItem}", "red"))
+        print(colored(f"Location: {currentLocation}", "green"))
+        print(colored(currentLocationText, "yellow"))
+
         command = input("> ").lower().strip()
 
         if command == "north":
@@ -19,8 +23,7 @@ def commands(currentLocation):
             return "south"
         elif command == "west":
             return "west"
-
-        if command == "open backpack":
+        elif command == "open backpack":
             inventory.backpack()
         elif command == "use knife":
             if inventory.holdingCurrentItem == "knife":
