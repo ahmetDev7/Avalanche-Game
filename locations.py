@@ -1,3 +1,5 @@
+from commands import commands
+from globalmethods import continueKey
 currentLocation = None
 
 
@@ -5,12 +7,30 @@ def startpoint():
     print("You are standing in front of the mountain at the place you woke up.")
     global currentLocation
     currentLocation = "startpoint"
+    cmd = commands(currentLocation)
+    if cmd == "north":
+        outsideCave()
+    elif cmd == "west":
+        river()
+    continueKey()
+
+
+def river():
+    print("You are standing in front of a river, it's flowing")
+    global currentLocation
+    currentLocation = "river"
 
 
 def outsideCave():
     print("You are standing in front of a cave, whill you enter it?")
     global currentLocation
     currentLocation = "outsideCave"
+    cmd = commands(currentLocation)
+    if cmd == "north":
+        print("xd")
+    elif cmd == "west":
+        print("xd")
+    continueKey()
 
 
 def insideCave():
