@@ -2,16 +2,21 @@ from colorama import init
 from termcolor import colored
 
 # Attainable Items
+# undone
 hasBerries = False
+# done
 hasWood = False
+# undone
 hasFishingRod = False
+# undone
 hasJacket = False
+# undone
 hasBoots = False
 
 # Conditions for cooking food & water
 woodPlaced = False
 rippedSurvivalBook = False
-survivalBookOnLog = False
+survivalBookOnWood = False
 matchesUsed = False
 steelPanHasWater = False
 steelPanPlaced = False

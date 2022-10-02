@@ -1,4 +1,4 @@
-from commands import commands
+from commands import *
 from globalmethods import continueKey
 currentLocation = None
 
