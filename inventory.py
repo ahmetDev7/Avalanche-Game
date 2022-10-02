@@ -27,16 +27,20 @@ def backpack():
             holdingCurrentItem = "knife"
             continueKey()
         elif backpackinput == "take survival book":
-            print("You are now holding your surival book in your hand.")
+            print(colored("You are now holding your surival book in your hand.", "green"))
             holdingCurrentItem = "Survival Book"
+            continueKey()
         elif backpackinput == "take mini axe":
-            print("You are now holding your mini axe in your hand.")
+            print(colored("You are now holding your mini axe in your hand.", "green"))
             holdingCurrentItem = "Mini axe"
+            continueKey()
         elif backpackinput == "take mini steelpan":
-            print("You are now holding your mini steelpan in your hand.")
+            print(colored("You are now holding your mini steelpan in your hand.", "green"))
             holdingCurrentItem = "Mini steelpan"
+            continueKey()
         elif backpackinput == "take matches":
-            print("You are now holding your matches in your hand.")
+            print(colored("You are now holding your matches in your hand.", "green"))
             holdingCurrentItem = "Matches"
+            continueKey()
         else:
             print("wrong")
