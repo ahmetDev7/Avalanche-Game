@@ -1,4 +1,4 @@
-from commands import commands
+from commands import *
 from globalmethods import continueKey
 currentLocation = None
 
@@ -23,7 +23,7 @@ def river():
 
 def outsideCave():
     global currentLocation
-    currentLocation = "outsideCave"
+    currentLocation = "Outside Cave"
     currentLocationText = "You are standing in front of a cave, whill you enter it?"
     cmd = commands(currentLocation, currentLocationText)
     if cmd == "north":
