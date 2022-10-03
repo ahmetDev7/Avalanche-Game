@@ -2,17 +2,18 @@ from colorama import init
 from termcolor import colored
 
 # Map data
-treeChopped = True
+treeChopped = False
 
 # Attainable Items
 hasBerries = False
-hasWood = True
+hasWood = False
 hasFishingRod = False
 hasJacket = False
 hasBoots = False
+hasFish = False
 
 # Conditions for cooking food & water
-woodPlaced = True
+woodPlaced = False
 rippedSurvivalBook = False
 survivalBookOnWood = False
 matchesUsed = False
@@ -22,6 +23,10 @@ fishPlaced = False
 
 # Achievement
 bearFed = False
+
+# Ending variables
+eatFish = False
+drinkWater = False
 
 
 def continueKey():

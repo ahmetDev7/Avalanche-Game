@@ -1,18 +1,18 @@
+from pyfiglet import figlet_format
 from commands import *
 from globalmethods import continueKey
 from imgrender import render
-currentLocation = None
 
-def renderimage(img):
-    image = render(img, scale = (20, 20))
+from typewriter import *
+currentLocation = None
 
 
 def Startpoint():
     global currentLocation
     currentLocation = "Startpoint"
     currentLocationText = "You are standing in front of the mountain at the place you woke up."
-    renderimage("avalanche\images\startpoint.jpg")
-    cmd = commands(currentLocation, currentLocationText)
+    currentLocationImg = "images/startpoint.jpg"
+    cmd = commands(currentLocation, currentLocationText, currentLocationImg)
     if cmd == "north":
         OutsideCave()
     else:
@@ -24,12 +24,10 @@ def Startpoint():
 def River():
     global currentLocation
     currentLocation = "River"
-
-    renderimage("avalanche\images\wriver2.jpg")
-
     currentLocationText = "You are standing in front of a river, it's flowing.. Looks like that there is some fish swimming in the water."
+    currentLocationImg = "images\wriver2.jpg"
 
-    cmd = commands(currentLocation, currentLocationText)
+    cmd = commands(currentLocation, currentLocationText, currentLocationImg)
     if cmd == "east":
         OutsideCave()
     elif cmd == "west":
@@ -47,8 +45,8 @@ def OutsideCave():
     global currentLocation
     currentLocation = "Outside the Cave"
     currentLocationText = "You are standing in front of a cave, will you enter it?"
-    renderimage("avalanche\images\cave.jpg")
-    cmd = commands(currentLocation, currentLocationText)
+    currentLocationImg = "images\cave.jpg"
+    cmd = commands(currentLocation, currentLocationText, currentLocationImg)
     if cmd == "north" or cmd == "enter cave":
         InsideCave()
     elif cmd == "west":
@@ -67,7 +65,7 @@ def OutsideCave():
 def InsideCave():
     global currentLocation
     currentLocation = "Inside the Cave"
-    renderimage("avalanche\images\insidecave.jpg")
+    currentLocationImg = "images\insidecave.jpg"
     if globalmethods.woodPlaced == True:
         currentLocationText = "You are inside the cave, and your wood has been placed. But it needs something flamable like paper on top of it to start a fire."
         if globalmethods.survivalBookOnWood == True:
@@ -77,18 +75,20 @@ def InsideCave():
                 if globalmethods.steelPanPlaced == True and globalmethods.fishPlaced == False:
                     currentLocationText = "You are inside the cave, your water is ready to consume! The fire is still burning."
                 elif globalmethods.fishPlaced == True and globalmethods.steelPanPlaced == False:
-                    currentLocationText = "You are inside the cave, your fish is cooking is ready to consume! The fire is still burning."
+                    currentLocationText = "You are inside the cave, your fish is ready to consume! The fire is still burning."
                 elif globalmethods.steelPanPlaced == True and globalmethods.fishPlaced == True:
                     currentLocationText = "You are inside the cave, your fish and water are ready to consume! The fire is still burning."
     else:
         currentLocationText = "You are inside the cave, it seems that it is safe here and there is no wind."
 
-    cmd = commands(currentLocation, currentLocationText)
+    cmd = commands(currentLocation, currentLocationText, currentLocationImg)
     if cmd == "south" or cmd == "exit cave" or cmd == "leave cave":
         OutsideCave()
     elif cmd == 0:
         globalmethods.continueKey()
         InsideCave()
+    elif cmd == "ending":
+        endGame()
     else:
         print("You can not go there!")
         globalmethods.continueKey()
@@ -99,8 +99,8 @@ def Tree():
     global currentLocation
     currentLocation = "Tree"
     currentLocationText = "You are standing in front of a tree, it has a nice colour and looks good in shape."
-    renderimage("avalanche\images\wtree.jpg")
-    cmd = commands(currentLocation, currentLocationText)
+    currentLocationImg = "images\wtree.jpg"
+    cmd = commands(currentLocation, currentLocationText, currentLocationImg)
     if cmd == "west":
         OutsideCave()
     elif cmd == "south":
@@ -115,8 +115,8 @@ def OutsideShack():
     global currentLocation
     currentLocation = "Outside the Shack"
     currentLocationText = "You are standing outside of a shack, it seems like it is abandoned.."
-    renderimage("avalanche\images\outsideshack.jpg")
-    cmd = commands(currentLocation, currentLocationText)
+    currentLocationImg = "images\outsideshack.jpg"
+    cmd = commands(currentLocation, currentLocationText, currentLocationImg)
     if cmd == "east" or cmd == "enter shack":
         InsideShack()
     elif cmd == "north":
@@ -131,8 +131,8 @@ def InsideShack():
     global currentLocation
     currentLocation = "Inside the Shack"
     currentLocationText = "You are inside the abandoned shack, in the back there is a storage room."
-    renderimage("avalanche\images\insideshack.jpg")
-    cmd = commands(currentLocation, currentLocationText)
+    currentLocationImg = "images\insideshack.jpg"
+    cmd = commands(currentLocation, currentLocationText, currentLocationImg)
     if cmd == "east" or cmd == "enter storage room":
         StorageRoom()
     elif cmd == "west" or cmd == "leave shack" or cmd == "exit shack":
@@ -146,7 +146,7 @@ def InsideShack():
 def StorageRoom():
     global currentLocation
     currentLocation = "Inside the Storage Room"
-    renderimage("avalanche\images\storageroom.jpg")
+    currentLocationImg = "images\storageroom.jpg"
 
     if globalmethods.hasJacket == True and globalmethods.hasBoots == False and globalmethods.hasFishingRod == False:
         currentLocationText = "You are inside the storage room of the abandoned shack. There are boots and a fishing rod."
@@ -163,7 +163,7 @@ def StorageRoom():
     else:
         currentLocationText = "You are inside the storage room of the abandoned shack. There is a jacket on the wall and under it are boots and a fishing rod."
 
-    cmd = commands(currentLocation, currentLocationText)
+    cmd = commands(currentLocation, currentLocationText, currentLocationImg)
     if cmd == "west" or cmd == "leave storage room" or cmd == "exit storage room":
         InsideShack()
     elif cmd == 0:
@@ -178,12 +178,12 @@ def StorageRoom():
 def Berries():
     global currentLocation
     currentLocation = "At the Berries"
-    renderimage("avalanche\images\wbush.jpg")
+    currentLocationImg = "images\wbush.jpg"
     if globalmethods.hasBerries == True or globalmethods.bearFed == True:
         currentLocationText = "You are in front of the bush that had the berries, it seems that there are none left."
     else:
         currentLocationText = "You are in front of a bush with berries, they seem delicious."
-    cmd = commands(currentLocation, currentLocationText)
+    cmd = commands(currentLocation, currentLocationText, currentLocationImg)
     if cmd == "south":
         Bear()
     elif cmd == "east":
@@ -200,13 +200,13 @@ def Berries():
 def Bear():
     global currentLocation
     currentLocation = "At the Bear"
-    renderimage("avalanche\images\wbear.jpg")
+    currentLocationImg = "images\wbear.jpg"
     if globalmethods.bearFed == False:
         currentLocationText = "Woah! A wild bear, but it seems that it is hungry and not harmful."
     else:
         currentLocationText = "The bear looks very happy. He seems friendly now."
 
-    cmd = commands(currentLocation, currentLocationText)
+    cmd = commands(currentLocation, currentLocationText, currentLocationImg)
     if cmd == "north":
         Berries()
     elif cmd == 0:
@@ -216,3 +216,26 @@ def Bear():
         print("You can not go there!")
         globalmethods.continueKey()
         Bear()
+
+
+def endGame():
+    os.system('cls')
+    typewriterEff("\nNow that you filled your needs.. you are starting to become tired after a few minutes... everything starts to get blurry and you start to fall asleep..")
+    sleep(1)
+    typewriterEff("\n\n......")
+    sleep(1)
+    typewriterEff(
+        """\n\nWoah! What is that sound?! It sounds like a helicopter outside the cave!""")
+    typewriterEff("""\n\nYou rush outside and see a helicopter in front of the cave with an open door. You see 2 people stepping out of the helicopter but can not recognize them because of the dust caused by the helicopter...""")
+    sleep(0.5)
+    typewriterEff("""\n\nIt is Peter and Maxwell!""")
+    sleep(0.5)
+    typewriterEff("""\n\nPeter: Come here quick!!""")
+    sleep(0.5)
+    typewriterEff("""\n\nMaxwell: Finally! We found you!""")
+    sleep(0.5)
+    typewriterEff("""\n\nYou step into the helicopter and fly away....\n""")
+    typewriterEffTitle(figlet_format("THE END", font="big"))
+    if globalmethods.bearFed == True:
+        print(colored("\nACHIEVEMENT UNLOCKED: You are a master bear tamer!\n", "yellow"))
+    input("Press a key to end the game..")

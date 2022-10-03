@@ -4,11 +4,17 @@ import globalmethods
 import os
 from colorama import init
 from termcolor import colored
+from imgrender import render
 
 
-def commands(currentLocation, currentLocationText):
+def renderimage(img):
+    image = render(img, scale=(20, 20))
+
+
+def commands(currentLocation, currentLocationText, currentLocationImg):
     while True:
         os.system('cls')
+        renderimage(currentLocationImg)
         print(
             colored(f"Holding current item: {inventory.holdingCurrentItem}", "red"))
         print(colored(f"Location: {currentLocation}", "green"))
@@ -293,3 +299,60 @@ def commands(currentLocation, currentLocationText):
                     print(colored(
                         "You should use your pan later or somewhere else.", "red"))
                 globalmethods.continueKey()
+
+        elif command == "fish" or command == "use fishing rod":
+            if currentLocation == "River":
+                if globalmethods.hasFishingRod == True and globalmethods.hasFish == False:
+                    print(colored(
+                        "You have caught a fish! You stuffed it in your backpack.", "green"))
+                    globalmethods.hasFish = True
+                elif inventory.holdingCurrentItem == "Nothing":
+                    globalmethods.emptyHand()
+                elif inventory.holdingCurrentItem != "Nothing" and inventory.holdingCurrentItem != "Fishing rod" and globalmethods.hasFishingRod == True:
+                    print(
+                        colored("You must first take out the fishing rod from your backpack!", "red"))
+                globalmethods.continueKey()
+
+        elif command == "use fish" or command == "place fish":
+            if inventory.holdingCurrentItem == "Fish":
+                if currentLocation == "Inside the Cave" and globalmethods.woodPlaced == True and globalmethods.survivalBookOnWood == True and globalmethods.matchesUsed == True and globalmethods.fishPlaced == False:
+                    print(colored(
+                        "The fish is cooking.. and ready! You can now consume the fish, it is safe to eat. Eat it slowly!.", "green"))
+                    globalmethods.hasFish = False
+                    globalmethods.fishPlaced = True
+                    inventory.holdingCurrentItem = "Nothing"
+                    return 0
+                else:
+                    print(colored(
+                        "You should use your fish later or somewhere else.", "red"))
+                    globalmethods.continueKey()
+            elif inventory.holdingCurrentItem == "Nothing":
+                globalmethods.emptyHand()
+            elif inventory.holdingCurrentItem != "Nothing" and inventory.holdingCurrentItem != "Fish" and globalmethods.hasFish == True:
+                print(
+                    colored("You must first take out the fish from your backpack!", "red"))
+                globalmethods.continueKey()
+
+        elif command == "eat fish" or command == "consume fish":
+            if globalmethods.fishPlaced == True:
+                print(
+                    colored("Yum! That fish was delicious.", "green"))
+                globalmethods.fishPlaced = False
+                globalmethods.eatFish = True
+
+                if globalmethods.eatFish == True and globalmethods.drinkWater == True:
+                    return "ending"
+                else:
+                    return 0
+
+        elif command == "drink water" or command == "consume water":
+            if globalmethods.steelPanPlaced == True:
+                print(
+                    colored("Yum! That water was delicious.", "green"))
+                globalmethods.steelPanPlaced = False
+                globalmethods.drinkWater = True
+
+                if globalmethods.eatFish == True and globalmethods.drinkWater == True:
+                    return "ending"
+                else:
+                    return 0

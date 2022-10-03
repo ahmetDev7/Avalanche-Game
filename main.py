@@ -49,10 +49,24 @@ from locations import *
 
 # typewriterEffTitle(figlet_format("The Avalanche", font="big"))
 
-# typewriterEff("""
-# Your mouth is dry and you are hungry.
-# The backpack you took with you is in front of you, it survived the avalanche.
-# Maybe there is something in your backpack which might be useful.
-# """)
+typewriterEff("""
+Your mouth is dry and you are hungry.
+The backpack you took with you is with you, it survived the avalanche.
+Maybe there is something in your backpack which might be useful.
+""")
+
+print(colored("---------------------------", "blue"))
+print(colored("CONTROLS:", "green"))
+print(colored("north", "red"))
+print(colored("east", "red"))
+print(colored("south", "red"))
+print(colored("west", "red"))
+print(colored("also commands like: take and use.\n", "red"))
+print(colored("You need to find the other commands out by yourself.\n", "red"))
+print(colored("Your backpack is always with you.\n", "red"))
+print(colored("Good luck! -Ahmet & Koray.", "yellow"))
+print(colored("---------------------------", "blue"))
+
+input(colored("Press a key to start the game..", "green"))
 
 Startpoint()

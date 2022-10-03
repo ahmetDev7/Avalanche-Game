@@ -19,20 +19,26 @@ def backpack():
         print(colored("\n- Knife", "green"))
         if globalmethods.rippedSurvivalBook == False:
             print(colored("- Survival Book", "green"))
-        else:
+        elif globalmethods.rippedSurvivalBook == True and globalmethods.survivalBookOnWood == False:
             print(colored("- Ripped Survival Book", "green"))
         print(colored("- Mini axe", "green"))
-        if globalmethods.steelPanHasWater == False:
+        if globalmethods.steelPanHasWater == False and globalmethods.steelPanPlaced == False:
             print(colored("- Mini steelpan", "green"))
-        else:
+        elif globalmethods.steelPanHasWater == True and globalmethods.steelPanPlaced == False:
             print(colored("- Mini steelpan (with water)", "green"))
-        print(colored("- Matches", "green"))
+        if globalmethods.matchesUsed == False:
+            print(colored("- Matches", "green"))
         if globalmethods.hasBerries == True:
             print(colored("- Berries", "green"))
         if globalmethods.hasWood == True:
             print(colored("- Wood", "green"))
+        if globalmethods.hasFishingRod == True:
+            print(colored("- Fishing rod", "green"))
+        if globalmethods.hasFish == True:
+            print(colored("- Fish", "green"))
         print(colored("---------------------------", "blue"))
         backpackinput = input("> ")
+
         if backpackinput == "close backpack" or backpackinput == "exit backpack" or backpackinput == "exit" or backpackinput == "leave backpack":
             isBackpackOpen = False
             return holdingCurrentItem
@@ -76,4 +82,15 @@ def backpack():
                 print(colored(
                     "You are now holding the ripped survival book pieces in your hand.", "green"))
                 holdingCurrentItem = "Ripped Survival Book"
+                globalmethods.continueKey()
+        elif backpackinput == "take fishing rod":
+            if globalmethods.hasFishingRod == True:
+                print(colored(
+                    "You are now holding the fishing rod in your hand.", "green"))
+                holdingCurrentItem = "Fishing rod"
+                globalmethods.continueKey()
+        elif backpackinput == "take fish":
+            if globalmethods.hasFish == True:
+                print(colored("You are now holding your fish in your hand.", "green"))
+                holdingCurrentItem = "Fish"
                 globalmethods.continueKey()
