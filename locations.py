@@ -12,8 +12,9 @@ def Startpoint():
     if cmd == "north":
         OutsideCave()
     else:
-        print("You can not go there!")
-    continueKey()
+        print(colored("You can not go there!", "red"))
+        globalmethods.continueKey()
+        Startpoint()
 
 
 def River():
@@ -27,7 +28,7 @@ def River():
         Berries()
     else:
         print("You can not go there!")
-    continueKey()
+        globalmethods.continueKey()
 
 
 def OutsideCave():
@@ -35,7 +36,7 @@ def OutsideCave():
     currentLocation = "Outside the Cave"
     currentLocationText = "You are standing in front of a cave, will you enter it?"
     cmd = commands(currentLocation, currentLocationText)
-    if cmd == "north" or "enter cave":
+    if cmd == "north" or cmd == "enter cave":
         InsideCave()
     elif cmd == "west":
         River()
@@ -44,7 +45,7 @@ def OutsideCave():
     else:
         print("You can not go there!")
         OutsideCave()
-    continueKey()
+        globalmethods.continueKey()
 
 
 def InsideCave():
@@ -52,12 +53,11 @@ def InsideCave():
     currentLocation = "Inside the Cave"
     currentLocationText = "You are inside the cave, it seems that it is safe here and there is no wind."
     cmd = commands(currentLocation, currentLocationText)
-    if cmd == "south" or "exit cave" or "leave cave":
+    if cmd == "south" or cmd == "exit cave" or cmd == "leave cave":
         OutsideCave()
     else:
         print("You can not go there!")
-    continueKey()
-
+        globalmethods.continueKey()
 
 
 def Tree():
@@ -71,7 +71,7 @@ def Tree():
         OutsideShack()
     else:
         print("You can not go there!")
-    continueKey()
+        globalmethods.continueKey()
 
 
 def OutsideShack():
@@ -79,13 +79,13 @@ def OutsideShack():
     currentLocation = "Outside the Shack"
     currentLocationText = "You are standing outside of a shack, it seems like it is abandoned.."
     cmd = commands(currentLocation, currentLocationText)
-    if cmd == "east" or "enter shack":
+    if cmd == "east" or cmd == "enter shack":
         InsideShack()
     elif cmd == "north":
         Tree()
     else:
         print("You can not go there!")
-    continueKey()
+        globalmethods.continueKey()
 
 
 def InsideShack():
@@ -93,13 +93,13 @@ def InsideShack():
     currentLocation = "Inside the Shack"
     currentLocationText = "You are inside the abandoned shack, in the back there is a storage room."
     cmd = commands(currentLocation, currentLocationText)
-    if cmd == "east" or "enter storage room":
+    if cmd == "east" or cmd == "enter storage room":
         StorageRoom()
-    elif cmd == "west" or "leave shack" or "exit shack":
+    elif cmd == "west" or cmd == "leave shack" or cmd == "exit shack":
         OutsideShack()
     else:
         print("You can not go there!")
-    continueKey()
+        globalmethods.continueKey()
 
 
 def StorageRoom():
@@ -107,12 +107,11 @@ def StorageRoom():
     currentLocation = "Inside the Storage Room"
     currentLocationText = "You are inside the storage room of the abandoned shack."
     cmd = commands(currentLocation, currentLocationText)
-    if cmd == "west" or "leave storage room" or "exit storage room":
+    if cmd == "west" or cmd == "leave storage room" or cmd == "exit storage room":
         InsideShack()
     else:
         print("You can not go there!")
-    continueKey()
-
+        globalmethods.continueKey()
 
 
 def Berries():
@@ -126,7 +125,7 @@ def Berries():
         River()
     else:
         print("You can not go there!")
-    continueKey()
+        globalmethods.continueKey()
 
 
 def Bear():
@@ -138,6 +137,6 @@ def Bear():
         Berries()
     else:
         print("You can not go there!")
-    continueKey()
+        globalmethods.continueKey()
 
-#hal
+# hal
