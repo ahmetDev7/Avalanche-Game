@@ -1,29 +1,24 @@
 from colorama import init
 from termcolor import colored
 
-# Finished steps
-treeChopped = False
+# Map data
+treeChopped = True
 
 # Attainable Items
-# done
 hasBerries = False
-# undone
-hasWood = False
-# undone
+hasWood = True
 hasFishingRod = False
-# undone
 hasJacket = False
-# undone
 hasBoots = False
 
 # Conditions for cooking food & water
-woodPlaced = False
+woodPlaced = True
 rippedSurvivalBook = False
 survivalBookOnWood = False
 matchesUsed = False
 steelPanHasWater = False
 steelPanPlaced = False
-hasFish = False
+fishPlaced = False
 
 # Achievement
 bearFed = False

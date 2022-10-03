@@ -20,12 +20,15 @@ def Startpoint():
 def River():
     global currentLocation
     currentLocation = "River"
-    currentLocationText = "You are standing in front of a river, it's flowing.."
+    currentLocationText = "You are standing in front of a river, it's flowing.. Looks like that there is some fish swimming in the water."
     cmd = commands(currentLocation, currentLocationText)
     if cmd == "east":
         OutsideCave()
     elif cmd == "west":
         Berries()
+    elif cmd == 0:
+        globalmethods.continueKey()
+        River()
     else:
         print("You can not go there!")
         globalmethods.continueKey()
@@ -43,6 +46,8 @@ def OutsideCave():
         River()
     elif cmd == "east":
         Tree()
+    elif cmd == "south":
+        Startpoint()
     else:
         print("You can not go there!")
         OutsideCave()
@@ -53,10 +58,27 @@ def OutsideCave():
 def InsideCave():
     global currentLocation
     currentLocation = "Inside the Cave"
-    currentLocationText = "You are inside the cave, it seems that it is safe here and there is no wind."
+
+    if globalmethods.woodPlaced == True:
+        currentLocationText = "You are inside the cave, and your wood has been placed. But it needs something flamable like paper on top of it to start a fire."
+        if globalmethods.survivalBookOnWood == True:
+            currentLocationText = "You are inside the cave, and your wood and paper have been placed. It looks like it is ready to be fired up!"
+            if globalmethods.matchesUsed == True:
+                currentLocationText = "You are inside the cave, your fire is burning nicely. Time for some cooking!"
+                if globalmethods.steelPanPlaced == True and globalmethods.fishPlaced == False:
+                    currentLocationText = "You are inside the cave, your water is ready to consume! The fire is still burning."
+                elif globalmethods.fishPlaced == True and globalmethods.steelPanPlaced == False:
+                    currentLocationText = "You are inside the cave, your fish is cooking is ready to consume! The fire is still burning."
+                elif globalmethods.steelPanPlaced == True and globalmethods.fishPlaced == True:
+                    currentLocationText = "You are inside the cave, your fish and water are ready to consume! The fire is still burning."
+    else:
+        currentLocationText = "You are inside the cave, it seems that it is safe here and there is no wind."
     cmd = commands(currentLocation, currentLocationText)
     if cmd == "south" or cmd == "exit cave" or cmd == "leave cave":
         OutsideCave()
+    elif cmd == 0:
+        globalmethods.continueKey()
+        InsideCave()
     else:
         print("You can not go there!")
         globalmethods.continueKey()
@@ -111,10 +133,27 @@ def InsideShack():
 def StorageRoom():
     global currentLocation
     currentLocation = "Inside the Storage Room"
-    currentLocationText = "You are inside the storage room of the abandoned shack."
+
+    if globalmethods.hasJacket == True and globalmethods.hasBoots == False and globalmethods.hasFishingRod == False:
+        currentLocationText = "You are inside the storage room of the abandoned shack. There are boots and a fishing rod."
+    elif globalmethods.hasJacket == True and globalmethods.hasBoots == True and globalmethods.hasFishingRod == False:
+        currentLocationText = "You are inside the storage room of the abandoned shack. There is a fishing rod."
+    elif globalmethods.hasJacket == True and globalmethods.hasBoots == False and globalmethods.hasFishingRod == True:
+        currentLocationText = "You are inside the storage room of the abandoned shack. There are boots."
+    elif globalmethods.hasJacket == False and globalmethods.hasBoots == True and globalmethods.hasFishingRod == False:
+        currentLocationText = "You are inside the storage room of the abandoned shack. There is a jacket on the wall and under it is a fishing rod."
+    elif globalmethods.hasJacket == False and globalmethods.hasBoots == False and globalmethods.hasFishingRod == True:
+        currentLocationText = "You are inside the storage room of the abandoned shack. There is a jacket on the wall and under it are boots."
+    elif globalmethods.hasJacket == True and globalmethods.hasBoots == True and globalmethods.hasFishingRod == True:
+        currentLocationText = "You are inside the storage room of the abandoned shack. Seems like there is nothing left."
+    else:
+        currentLocationText = "You are inside the storage room of the abandoned shack. There is a jacket on the wall and under it are boots and a fishing rod."
     cmd = commands(currentLocation, currentLocationText)
     if cmd == "west" or cmd == "leave storage room" or cmd == "exit storage room":
         InsideShack()
+    elif cmd == 0:
+        globalmethods.continueKey()
+        StorageRoom()
     else:
         print("You can not go there!")
         globalmethods.continueKey()
@@ -133,6 +172,9 @@ def Berries():
         Bear()
     elif cmd == "east":
         River()
+    elif cmd == 0:
+        globalmethods.continueKey()
+        Berries()
     else:
         print("You can not go there!")
         globalmethods.continueKey()
@@ -142,13 +184,17 @@ def Berries():
 def Bear():
     global currentLocation
     currentLocation = "At the Bear"
-    currentLocationText = "Woah! A wild bear, but it seems that it is hungry and not harmful."
+    if globalmethods.bearFed == False:
+        currentLocationText = "Woah! A wild bear, but it seems that it is hungry and not harmful."
+    else:
+        currentLocationText = "The bear looks very happy. He seems friendly now."
     cmd = commands(currentLocation, currentLocationText)
     if cmd == "north":
         Berries()
+    elif cmd == 0:
+        globalmethods.continueKey()
+        Bear()
     else:
         print("You can not go there!")
         globalmethods.continueKey()
         Bear()
-
-# hal
