@@ -1,10 +1,13 @@
 from colorama import init
 from termcolor import colored
 
+# Finished steps
+treeChopped = False
+
 # Attainable Items
-# undone
-hasBerries = False
 # done
+hasBerries = False
+# undone
 hasWood = False
 # undone
 hasFishingRod = False

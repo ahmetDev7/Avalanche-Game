@@ -63,7 +63,7 @@ def InsideCave():
 def Tree():
     global currentLocation
     currentLocation = "Tree"
-    currentLocationText = "You are standing in front of a tree, there is a log next to it."
+    currentLocationText = "You are standing in front of a tree, it has a nice colour and looks good in shape."
     cmd = commands(currentLocation, currentLocationText)
     if cmd == "west":
         OutsideCave()
@@ -72,6 +72,7 @@ def Tree():
     else:
         print("You can not go there!")
         globalmethods.continueKey()
+        Tree()
 
 
 def OutsideShack():
@@ -117,7 +118,10 @@ def StorageRoom():
 def Berries():
     global currentLocation
     currentLocation = "At the Berries"
-    currentLocationText = "You are in front of a bush with berries, they seem delicious."
+    if globalmethods.hasBerries == True or globalmethods.bearFed == True:
+        currentLocationText = "You are in front of the bush that had the berries, it seems that there are none left."
+    else:
+        currentLocationText = "You are in front of a bush with berries, they seem delicious."
     cmd = commands(currentLocation, currentLocationText)
     if cmd == "south":
         Bear()
