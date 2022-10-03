@@ -1,13 +1,17 @@
 from commands import *
 from globalmethods import continueKey
-import climage
+from imgrender import render
 currentLocation = None
+
+def renderimage(img):
+    image = render(img, scale = (20, 20))
 
 
 def Startpoint():
     global currentLocation
     currentLocation = "Startpoint"
     currentLocationText = "You are standing in front of the mountain at the place you woke up."
+    renderimage("avalanche\images\startpoint.jpg")
     cmd = commands(currentLocation, currentLocationText)
     if cmd == "north":
         OutsideCave()
@@ -20,7 +24,11 @@ def Startpoint():
 def River():
     global currentLocation
     currentLocation = "River"
+
+    renderimage("avalanche\images\wriver2.jpg")
+
     currentLocationText = "You are standing in front of a river, it's flowing.. Looks like that there is some fish swimming in the water."
+
     cmd = commands(currentLocation, currentLocationText)
     if cmd == "east":
         OutsideCave()
@@ -39,6 +47,7 @@ def OutsideCave():
     global currentLocation
     currentLocation = "Outside the Cave"
     currentLocationText = "You are standing in front of a cave, will you enter it?"
+    renderimage("avalanche\images\cave.jpg")
     cmd = commands(currentLocation, currentLocationText)
     if cmd == "north" or cmd == "enter cave":
         InsideCave()
@@ -58,7 +67,7 @@ def OutsideCave():
 def InsideCave():
     global currentLocation
     currentLocation = "Inside the Cave"
-
+    renderimage("avalanche\images\insidecave.jpg")
     if globalmethods.woodPlaced == True:
         currentLocationText = "You are inside the cave, and your wood has been placed. But it needs something flamable like paper on top of it to start a fire."
         if globalmethods.survivalBookOnWood == True:
@@ -73,6 +82,7 @@ def InsideCave():
                     currentLocationText = "You are inside the cave, your fish and water are ready to consume! The fire is still burning."
     else:
         currentLocationText = "You are inside the cave, it seems that it is safe here and there is no wind."
+
     cmd = commands(currentLocation, currentLocationText)
     if cmd == "south" or cmd == "exit cave" or cmd == "leave cave":
         OutsideCave()
@@ -89,6 +99,7 @@ def Tree():
     global currentLocation
     currentLocation = "Tree"
     currentLocationText = "You are standing in front of a tree, it has a nice colour and looks good in shape."
+    renderimage("avalanche\images\wtree.jpg")
     cmd = commands(currentLocation, currentLocationText)
     if cmd == "west":
         OutsideCave()
@@ -104,6 +115,7 @@ def OutsideShack():
     global currentLocation
     currentLocation = "Outside the Shack"
     currentLocationText = "You are standing outside of a shack, it seems like it is abandoned.."
+    renderimage("avalanche\images\outsideshack.jpg")
     cmd = commands(currentLocation, currentLocationText)
     if cmd == "east" or cmd == "enter shack":
         InsideShack()
@@ -119,6 +131,7 @@ def InsideShack():
     global currentLocation
     currentLocation = "Inside the Shack"
     currentLocationText = "You are inside the abandoned shack, in the back there is a storage room."
+    renderimage("avalanche\images\insideshack.jpg")
     cmd = commands(currentLocation, currentLocationText)
     if cmd == "east" or cmd == "enter storage room":
         StorageRoom()
@@ -133,6 +146,7 @@ def InsideShack():
 def StorageRoom():
     global currentLocation
     currentLocation = "Inside the Storage Room"
+    renderimage("avalanche\images\storageroom.jpg")
 
     if globalmethods.hasJacket == True and globalmethods.hasBoots == False and globalmethods.hasFishingRod == False:
         currentLocationText = "You are inside the storage room of the abandoned shack. There are boots and a fishing rod."
@@ -148,6 +162,7 @@ def StorageRoom():
         currentLocationText = "You are inside the storage room of the abandoned shack. Seems like there is nothing left."
     else:
         currentLocationText = "You are inside the storage room of the abandoned shack. There is a jacket on the wall and under it are boots and a fishing rod."
+
     cmd = commands(currentLocation, currentLocationText)
     if cmd == "west" or cmd == "leave storage room" or cmd == "exit storage room":
         InsideShack()
@@ -163,6 +178,7 @@ def StorageRoom():
 def Berries():
     global currentLocation
     currentLocation = "At the Berries"
+    renderimage("avalanche\images\wbush.jpg")
     if globalmethods.hasBerries == True or globalmethods.bearFed == True:
         currentLocationText = "You are in front of the bush that had the berries, it seems that there are none left."
     else:
@@ -184,10 +200,12 @@ def Berries():
 def Bear():
     global currentLocation
     currentLocation = "At the Bear"
+    renderimage("avalanche\images\wbear.jpg")
     if globalmethods.bearFed == False:
         currentLocationText = "Woah! A wild bear, but it seems that it is hungry and not harmful."
     else:
         currentLocationText = "The bear looks very happy. He seems friendly now."
+
     cmd = commands(currentLocation, currentLocationText)
     if cmd == "north":
         Berries()
