@@ -1,25 +1,25 @@
 import os
+import globalmethods
 from colorama import init
 from termcolor import colored
 
-Bookopened = False
 currentChapter = None
 
 
 def checkChapter(chapterSelection):
-    if chapterSelection.lower() == "chapter 2" and Bookopened == True:
+    if chapterSelection.lower() == "chapter 2":
         SurvivalBookCh2()
 
-    elif chapterSelection.lower() == "chapter 3" and Bookopened == True:
+    elif chapterSelection.lower() == "chapter 3":
         SurvivalBookCh3()
 
-    elif chapterSelection.lower() == "chapter 4" and Bookopened == True:
+    elif chapterSelection.lower() == "chapter 4":
         SurvivalBookCh4()
 
-    elif chapterSelection.lower() == "chapter 5" and Bookopened == True:
+    elif chapterSelection.lower() == "chapter 5":
         SurvivalBookCh5()
-    elif chapterSelection.lower() == "exit book" and Bookopened == True:
-        os.system('cls')
+    elif chapterSelection.lower() == "exit book" or chapterSelection.lower() == "exit survival book" or chapterSelection.lower() == "leave book" or chapterSelection.lower() == "leave survival book" or chapterSelection.lower() == "stop reading":
+        return 0
 
     else:
         print("Dat is geen optie.")
@@ -36,9 +36,8 @@ def checkChapter(chapterSelection):
 
 
 def OpenSurvivalBook():
-    global Bookopened
+    os.system('cls')
     global currentChapter
-    Bookopened = True
     currentChapter = 1
     print(colored("------------------------------------------------", "blue"))
     print(colored("""'Chapter 1. Basic Survival Guide'
@@ -52,11 +51,12 @@ to hunt herbivorous animals like deer or cattle
 or aquatic animals like fish.""", "green"))
     print(colored("-------------------------------------------------", "blue"))
 
-    bookInput = input()
-    if bookInput.lower() == "next page":
+    bookInput = input("> ")
+    if bookInput.lower() == "next page" or bookInput.lower() == "next":
         SurvivalBookCh2()
-    elif bookInput.lower() == "previous page":
-        print("There are no previous pages")
+    elif bookInput.lower() == "previous page" or bookInput.lower() == "previous":
+        print(colored("There are no previous pages.", "red"))
+        globalmethods.continueKey()
         OpenSurvivalBook()
     else:
         chapterSelection = bookInput
@@ -64,6 +64,7 @@ or aquatic animals like fish.""", "green"))
 
 
 def SurvivalBookCh2():
+    os.system('cls')
     global currentChapter
     currentChapter = 2
     print(colored("------------------------------------------------", "blue"))
@@ -77,10 +78,10 @@ because wildlife might get attracted if you do
 it openly in the wild. Also there is no wind
 inside so your fire will stay put.""", "green"))
     print(colored("------------------------------------------------", "blue"))
-    bookInput = input()
-    if bookInput.lower() == "next page":
+    bookInput = input("> ")
+    if bookInput.lower() == "next page" or bookInput.lower() == "next":
         SurvivalBookCh3()
-    elif bookInput.lower() == "previous page":
+    elif bookInput.lower() == "previous page" or bookInput.lower() == "previous":
         OpenSurvivalBook()
     else:
         chapterSelection = bookInput
@@ -88,6 +89,7 @@ inside so your fire will stay put.""", "green"))
 
 
 def SurvivalBookCh3():
+    os.system('cls')
     global currentChapter
     currentChapter = 3
     print(colored("----------------------------------------------------------", "blue"))
@@ -102,10 +104,10 @@ there is a running water source nearby, with this you
 can catch aquatic animals to consume and stay free
 from hunger.""", "green"))
     print(colored("----------------------------------------------------------", "blue"))
-    bookInput = input()
-    if bookInput.lower() == "next page":
+    bookInput = input("> ")
+    if bookInput.lower() == "next page" or bookInput.lower() == "next":
         SurvivalBookCh4()
-    elif bookInput.lower() == "previous page":
+    elif bookInput.lower() == "previous page" or bookInput.lower() == "previous":
         SurvivalBookCh2()
     else:
         chapterSelection = bookInput
@@ -113,6 +115,7 @@ from hunger.""", "green"))
 
 
 def SurvivalBookCh4():
+    os.system('cls')
     global currentChapter
     currentChapter = 4
     print(colored("------------------------------------------------------------", "blue"))
@@ -128,10 +131,10 @@ if you can find a dry log.
 When you have all of these materials you have the
 tools to start a fire, now you only need a fire source.""", "green"))
     print(colored("------------------------------------------------------------", "blue"))
-    bookInput = input()
-    if bookInput.lower() == "next page":
+    bookInput = input("> ")
+    if bookInput.lower() == "next page" or bookInput.lower() == "next":
         SurvivalBookCh5()
-    elif bookInput.lower() == "previous page":
+    elif bookInput.lower() == "previous page" or bookInput.lower() == "previous":
         SurvivalBookCh3()
     else:
         chapterSelection = bookInput
@@ -139,6 +142,7 @@ tools to start a fire, now you only need a fire source.""", "green"))
 
 
 def SurvivalBookCh5():
+    os.system('cls')
     global currentChapter
     currentChapter = 5
     print(colored("--------------------------------------------------", "blue"))
@@ -147,21 +151,13 @@ Be careful of wild animals. Wild animals can be
 dangerous but you can tame them by using food like
 berries.""", "green"))
     print(colored("--------------------------------------------------", "blue"))
-    bookInput = input()
-    if bookInput.lower() == "next page":
-        print("There are no pages left.")
+    bookInput = input("> ")
+    if bookInput.lower() == "next page" or bookInput.lower() == "next":
+        print(colored("There are no pages left.", "red"))
+        globalmethods.continueKey()
         SurvivalBookCh5()
-    elif bookInput.lower() == "previous page":
+    elif bookInput.lower() == "previous page" or bookInput.lower() == "previous":
         SurvivalBookCh4()
     else:
         chapterSelection = bookInput
         checkChapter(chapterSelection)
-
-
-
-standardInput = input()
-if standardInput.lower() == "open survivalbook":
-    OpenSurvivalBook()
-
-
-# hello

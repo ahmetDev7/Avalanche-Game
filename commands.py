@@ -1,4 +1,5 @@
 import inventory
+import survivalbook
 import globalmethods
 import os
 from colorama import init
@@ -52,6 +53,13 @@ def commands(currentLocation, currentLocationText):
 
         elif command == "exit storage room":
             return "exit storage room"
+
+        elif command == "open survival book" or command == "open survivalbook" or command == "read survival book" or command == "read survivalbook" or command == "open book" or command == "read book":
+            if inventory.holdingCurrentItem == "Survival Book":
+                survivalbook.OpenSurvivalBook()
+            elif inventory.holdingCurrentItem == "Nothing":
+                globalmethods.emptyHand()
+                globalmethods.continueKey()
 
         elif command == "open backpack" or command == "enter backpack" or command == "backpack":
             inventory.backpack()
