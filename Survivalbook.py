@@ -18,7 +18,7 @@ def checkChapter(chapterSelection):
 
     elif chapterSelection.lower() == "chapter 5":
         SurvivalBookCh5()
-    elif chapterSelection.lower() == "exit book" or chapterSelection.lower() == "exit survival book" or chapterSelection.lower() == "leave book" or chapterSelection.lower() == "leave survival book" or chapterSelection.lower() == "stop reading":
+    elif chapterSelection.lower() == "exit" or chapterSelection.lower() == "exit book" or chapterSelection.lower() == "exit survival book" or chapterSelection.lower() == "leave book" or chapterSelection.lower() == "leave survival book" or chapterSelection.lower() == "stop reading":
         return 0
 
     else:
