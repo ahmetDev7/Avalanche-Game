@@ -1,3 +1,4 @@
+from turtle import back
 from colorama import init
 from termcolor import colored
 import os
@@ -16,9 +17,15 @@ def backpack():
         print(colored("---------------------------", "blue"))
         print(colored("Items in backpack:", "green"))
         print(colored("\n- Knife", "green"))
-        print(colored("- Survival Book", "green"))
+        if globalmethods.rippedSurvivalBook == False:
+            print(colored("- Survival Book", "green"))
+        else:
+            print(colored("- Ripped Survival Book", "green"))
         print(colored("- Mini axe", "green"))
-        print(colored("- Mini steelpan", "green"))
+        if globalmethods.steelPanHasWater == False:
+            print(colored("- Mini steelpan", "green"))
+        else:
+            print(colored("- Mini steelpan (with water)", "green"))
         print(colored("- Matches", "green"))
         if globalmethods.hasBerries == True:
             print(colored("- Berries", "green"))
@@ -41,10 +48,15 @@ def backpack():
             print(colored("You are now holding your mini axe in your hand.", "green"))
             holdingCurrentItem = "Mini axe"
             globalmethods.continueKey()
-        elif backpackinput == "take mini steelpan":
-            print(
-                colored("You are now holding your mini steelpan in your hand.", "green"))
-            holdingCurrentItem = "Mini steelpan"
+        elif backpackinput == "take mini steelpan" or backpackinput == "take steelpan" or backpackinput == "take pan":
+            if globalmethods.steelPanHasWater == False:
+                print(
+                    colored("You are now holding your mini steelpan in your hand.", "green"))
+                holdingCurrentItem = "Mini steelpan"
+            else:
+                print(
+                    colored("You are now holding your mini steelpan (with water) in your hand.", "green"))
+                holdingCurrentItem = "Mini steelpan (with water)"
             globalmethods.continueKey()
         elif backpackinput == "take matches":
             print(colored("You are now holding your matches in your hand.", "green"))
@@ -54,3 +66,14 @@ def backpack():
             print(colored("You are now holding your berries in your hand.", "green"))
             holdingCurrentItem = "Berries"
             globalmethods.continueKey()
+        elif backpackinput == "take wood":
+            if globalmethods.hasWood == True:
+                print(colored("You are now holding your wood in your hand.", "green"))
+                holdingCurrentItem = "Wood"
+                globalmethods.continueKey()
+        elif backpackinput == "take ripped survival book":
+            if globalmethods.rippedSurvivalBook == True:
+                print(colored(
+                    "You are now holding the ripped survival book pieces in your hand.", "green"))
+                holdingCurrentItem = "Ripped Survival Book"
+                globalmethods.continueKey()

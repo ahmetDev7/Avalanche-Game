@@ -55,11 +55,16 @@ def commands(currentLocation, currentLocationText):
             return "exit storage room"
 
         elif command == "open survival book" or command == "open survivalbook" or command == "read survival book" or command == "read survivalbook" or command == "open book" or command == "read book":
-            if inventory.holdingCurrentItem == "Survival Book":
-                survivalbook.OpenSurvivalBook()
-            elif inventory.holdingCurrentItem == "Nothing":
-                globalmethods.emptyHand()
+            if globalmethods.rippedSurvivalBook == True:
+                print(colored(
+                    "You have ripped the Survival Book, you can no longer open it!", "red"))
                 globalmethods.continueKey()
+            else:
+                if inventory.holdingCurrentItem == "Survival Book":
+                    survivalbook.OpenSurvivalBook()
+                elif inventory.holdingCurrentItem == "Nothing":
+                    globalmethods.emptyHand()
+                    globalmethods.continueKey()
 
         elif command == "open backpack" or command == "enter backpack" or command == "backpack":
             inventory.backpack()
@@ -81,9 +86,10 @@ def commands(currentLocation, currentLocationText):
                     print(
                         colored("You have taken the berries and put them in your backpack.", "green"))
                     globalmethods.hasBerries = True
+                    return 0
                 else:
                     print(colored("You already took the berries!", "red"))
-                globalmethods.continueKey()
+                    globalmethods.continueKey()
             else:
                 print(colored("There are no berries here!", "red"))
                 globalmethods.continueKey()
@@ -96,9 +102,10 @@ def commands(currentLocation, currentLocationText):
                     globalmethods.bearFed = True
                     globalmethods.hasBerries = False
                     inventory.holdingCurrentItem = "Nothing"
+                    return 0
                 else:
                     print(colored("You can not use the berries here.", "red"))
-                globalmethods.continueKey()
+                    globalmethods.continueKey()
             elif inventory.holdingCurrentItem == "Nothing":
                 globalmethods.emptyHand()
                 globalmethods.continueKey()
@@ -106,7 +113,7 @@ def commands(currentLocation, currentLocationText):
                 print(colored("You have no berries in your hand!", "red"))
                 globalmethods.continueKey()
 
-        elif command == "cut wood" or command == "chop wood" or command == "chop tree" or command == "cut tree":
+        elif command == "cut wood" or command == "chop wood" or command == "chop tree" or command == "cut tree" or command == "use axe" or command == "use mini axe":
             if inventory.holdingCurrentItem == "Mini axe":
                 if currentLocation == "Tree":
                     if globalmethods.treeChopped == False:
@@ -129,41 +136,160 @@ def commands(currentLocation, currentLocationText):
                     "You can not chop the tree with this item!", "red"))
                 globalmethods.continueKey()
 
-        elif command == "use wood" or command == "place wood":
+        elif command == "take fishing rod":
+            if currentLocation == "Inside the Storage Room":
+                if globalmethods.hasFishingRod == False:
+                    print(colored(
+                        "You have collected the fishing rod and put it in your backpack!", "green"))
+                    globalmethods.hasFishingRod = True
+                    return 0
+                else:
+                    print(colored("You have already collected the fishing rod!", "red"))
+                    globalmethods.continueKey()
+
+        elif command == "take jacket":
+            if currentLocation == "Inside the Storage Room":
+                if globalmethods.hasJacket == False:
+                    print(colored(
+                        "There is no space in your backpack for the jacket! Try putting it on.", "red"))
+                else:
+                    print(colored("You have already collected the jacket!", "red"))
+                globalmethods.continueKey()
+
+        elif command == "put jacket on" or command == "put the jacket on" or command == "put on jacket":
+            if currentLocation == "Inside the Storage Room":
+                if globalmethods.hasJacket == False:
+                    print(colored(
+                        "You have put the jacket on! Feels warm doesn't it?", "green"))
+                    globalmethods.hasJacket = True
+                    return 0
+                else:
+                    print(colored("You have already put your jacket on!", "red"))
+                    globalmethods.continueKey()
+
+        elif command == "take boots":
+            if currentLocation == "Inside the Storage Room":
+                if globalmethods.hasBoots == False:
+                    print(colored(
+                        "There is no space in your backpack for the boots! Try putting it on.", "red"))
+                else:
+                    print(colored("You have already collected the boots!", "red"))
+                globalmethods.continueKey()
+
+        elif command == "put boots on" or command == "put the boots on" or command == "put on boots":
+            if currentLocation == "Inside the Storage Room":
+                if globalmethods.hasBoots == False:
+                    print(colored(
+                        "You have put the boots on! Feels way better!", "green"))
+                    globalmethods.hasBoots = True
+                    return 0
+                else:
+                    print(colored("You have already put your boots on!", "red"))
+                    globalmethods.continueKey()
+
+        elif command == "use wood" or command == "place wood" or command == "set wood" or command == "put wood":
             if globalmethods.hasWood == True:
                 if inventory.holdingCurrentItem == "Wood":
-                    if currentLocation == "Inside Cave":
+                    if currentLocation == "Inside the Cave":
                         print(
                             colored("The wood has been placed on the floor.", "green"))
                         globalmethods.woodPlaced = True
                         globalmethods.hasWood = False
+                        inventory.holdingCurrentItem = "Nothing"
+                        return 0
                     else:
                         print(
                             colored("Maybe it is better to place it somewhere more safe.", "red"))
-                    globalmethods.continueKey()
                 elif inventory.holdingCurrentItem == "Nothing":
                     globalmethods.emptyHand()
-                    globalmethods.continueKey()
                 elif inventory.holdingCurrentItem != "Nothing" and inventory.holdingCurrentItem != "Wood":
                     print(
                         colored("You must first take out the wood from your backpack!", "red"))
+                globalmethods.continueKey()
 
-        # elif command == "place survival book" or command == "use ripped survival book" or command == "place ripped survival book":
-        #     if inventory.holdingCurrentItem == "survival book":
-        #         if globalmethods.rippedSurvivalBook == True:
-        #             if globalmethods.woodPlaced == True:
-        #                 print(
-        #                     colored("The survival book has been placed on the wood.", "green"))
-        #                 globalmethods.survivalBookOnWood = True
-        #             else:
-        #                 print(colored(
-        #                     "Maybe you should first place wood where you can start the fire on.", "red"))
-        #         else:
-        #             print(colored(
-        #                 "Maybe you should first rip the survival book to place it on the log to start a fire.", "red"))
-        #     elif inventory.holdingCurrentItem == "Nothing":
-        #         globalmethods.emptyHand()
+        elif command == "rip survival book" or command == "rip book" or command == "rip the book" or command == "rip the survival book":
+            if inventory.holdingCurrentItem == "Survival Book":
+                globalmethods.rippedSurvivalBook = True
+                print(
+                    colored("The survival book has been ripped in pieces.", "green"))
+                inventory.holdingCurrentItem = "Ripped Survival Book"
+            elif inventory.holdingCurrentItem == "Nothing":
+                globalmethods.emptyHand()
+            elif inventory.holdingCurrentItem != "Nothing" and inventory.holdingCurrentItem != "Survival Book":
+                print(
+                    colored("You must first take out the survival book from your backpack!", "red"))
+            globalmethods.continueKey()
 
-        # elif command == "use matches" or command == "start matches" or command == "fire matches":
-            # if inventory.holdingCurrentItem == "matches":
-            # if globalmethods.
+        elif command == "place survival book" or command == "place book" or command == "place book on wood" or command == "place survival book on wood":
+            if currentLocation == "Inside the Cave" and globalmethods.rippedSurvivalBook == False:
+                print(colored(
+                    "WOW! Easy there, you should first rip it into pieces.", "red"))
+                globalmethods.continueKey()
+
+        elif command == "use ripped survival book" or command == "place paper" or command == "place ripped survival book" or command == "place ripped survival book on fire":
+            if inventory.holdingCurrentItem == "Ripped Survival Book":
+                if globalmethods.rippedSurvivalBook == True:
+                    if globalmethods.woodPlaced == True:
+                        print(
+                            colored("The ripped survival book has been placed on the wood.", "green"))
+                        globalmethods.survivalBookOnWood = True
+                        inventory.holdingCurrentItem = "Nothing"
+                        return 0
+                    else:
+                        print(colored(
+                            "Maybe you should first place wood where you can put the paper on.", "red"))
+                else:
+                    print(colored(
+                        "Maybe you should first rip the survival book to place it on the log to start a fire.", "red"))
+            elif inventory.holdingCurrentItem == "Nothing":
+                globalmethods.emptyHand()
+            elif inventory.holdingCurrentItem != "Nothing" and inventory.holdingCurrentItem != "Ripped Survival Book":
+                print(
+                    colored("You must first take out the ripped survival book from your backpack!", "red"))
+            globalmethods.continueKey()
+
+        elif command == "use matches" or command == "start matches" or command == "fire matches":
+            if inventory.holdingCurrentItem == "Matches":
+                if globalmethods.woodPlaced == True and globalmethods.survivalBookOnWood == True:
+                    print(
+                        colored("The matches have been fired! Woah, the paper is starting to burn!", "green"))
+                    globalmethods.matchesUsed = True
+                    inventory.holdingCurrentItem = "Nothing"
+                    return 0
+                else:
+                    print(colored(
+                        "You should use your matches later.", "red"))
+                globalmethods.continueKey()
+            elif inventory.holdingCurrentItem == "Nothing":
+                globalmethods.emptyHand()
+                globalmethods.continueKey()
+            elif inventory.holdingCurrentItem != "Nothing" and inventory.holdingCurrentItem != "Matches":
+                print(
+                    colored("You must first take out the matches from your backpack!", "red"))
+            globalmethods.continueKey()
+
+        elif command == "use steelpan" or command == "place steelpan" or command == "use mini steelpan" or command == "place mini steelpan" or command == "use pan" or command == "place pan":
+            if inventory.holdingCurrentItem == "Mini steelpan" or inventory.holdingCurrentItem == "Mini steelpan (with water)":
+                if currentLocation == "Inside the Cave" and globalmethods.woodPlaced == True and globalmethods.survivalBookOnWood == True and globalmethods.matchesUsed == True:
+                    if globalmethods.steelPanHasWater == False:
+                        print(
+                            colored("There is nothing in the pan, what you do want to boil?! Air?!", "red"))
+                    else:
+                        print(
+                            colored("The water is boiling.. and ready! You can now consume the water, it is safe to drink. Drink it slowly!.", "green"))
+                        globalmethods.steelPanPlaced = True
+                        return 0
+                elif currentLocation == "River":
+                    if globalmethods.steelPanHasWater == False:
+                        print(
+                            colored("You have collected water in your steelpan!", "green"))
+                        globalmethods.steelPanHasWater = True
+                        inventory.holdingCurrentItem = "Mini steelpan (with water)"
+                        return 0
+                    else:
+                        print(
+                            colored("You have already collected water in your steelpan!", "red"))
+                else:
+                    print(colored(
+                        "You should use your pan later or somewhere else.", "red"))
+                globalmethods.continueKey()
