@@ -29,6 +29,7 @@ def River():
     else:
         print("You can not go there!")
         globalmethods.continueKey()
+        River()
 
 
 def OutsideCave():
@@ -46,6 +47,7 @@ def OutsideCave():
         print("You can not go there!")
         OutsideCave()
         globalmethods.continueKey()
+        OutsideCave()
 
 
 def InsideCave():
@@ -58,6 +60,7 @@ def InsideCave():
     else:
         print("You can not go there!")
         globalmethods.continueKey()
+        InsideCave()
 
 
 def Tree():
@@ -72,6 +75,7 @@ def Tree():
     else:
         print("You can not go there!")
         globalmethods.continueKey()
+        Tree()
 
 
 def OutsideShack():
@@ -86,6 +90,7 @@ def OutsideShack():
     else:
         print("You can not go there!")
         globalmethods.continueKey()
+        OutsideShack()
 
 
 def InsideShack():
@@ -100,6 +105,7 @@ def InsideShack():
     else:
         print("You can not go there!")
         globalmethods.continueKey()
+        InsideShack()
 
 
 def StorageRoom():
@@ -112,6 +118,7 @@ def StorageRoom():
     else:
         print("You can not go there!")
         globalmethods.continueKey()
+        StorageRoom()
 
 
 def Berries():
@@ -126,6 +133,7 @@ def Berries():
     else:
         print("You can not go there!")
         globalmethods.continueKey()
+        Berries()
 
 
 def Bear():
@@ -138,5 +146,6 @@ def Bear():
     else:
         print("You can not go there!")
         globalmethods.continueKey()
+        Bear()
 
 # hal
