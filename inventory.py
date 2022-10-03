@@ -33,7 +33,7 @@ def backpack():
             print(colored("You are now holding your knife in your hand.", "green"))
             holdingCurrentItem = "Knife"
             globalmethods.continueKey()
-        elif backpackinput == "take survival book":
+        elif backpackinput == "take survival book" or backpackinput == "take book":
             print(colored("You are now holding your surival book in your hand.", "green"))
             holdingCurrentItem = "Survival Book"
             globalmethods.continueKey()
