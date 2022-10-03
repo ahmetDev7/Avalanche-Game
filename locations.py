@@ -36,7 +36,7 @@ def River():
         globalmethods.continueKey()
         River()
     else:
-        print("You can not go there!")
+        print(colored("You can not go there!", "red"))
         globalmethods.continueKey()
         River()
 
@@ -56,7 +56,7 @@ def OutsideCave():
     elif cmd == "south":
         Startpoint()
     else:
-        print("You can not go there!")
+        print(colored("You can not go there!", "red"))
         OutsideCave()
         globalmethods.continueKey()
         OutsideCave()
@@ -90,7 +90,7 @@ def InsideCave():
     elif cmd == "ending":
         endGame()
     else:
-        print("You can not go there!")
+        print(colored("You can not go there!", "red"))
         globalmethods.continueKey()
         InsideCave()
 
@@ -106,7 +106,7 @@ def Tree():
     elif cmd == "south":
         OutsideShack()
     else:
-        print("You can not go there!")
+        print(colored("You can not go there!", "red"))
         globalmethods.continueKey()
         Tree()
 
@@ -122,7 +122,7 @@ def OutsideShack():
     elif cmd == "north":
         Tree()
     else:
-        print("You can not go there!")
+        print(colored("You can not go there!", "red"))
         globalmethods.continueKey()
         OutsideShack()
 
@@ -138,7 +138,7 @@ def InsideShack():
     elif cmd == "west" or cmd == "leave shack" or cmd == "exit shack":
         OutsideShack()
     else:
-        print("You can not go there!")
+        print(colored("You can not go there!", "red"))
         globalmethods.continueKey()
         InsideShack()
 
@@ -170,7 +170,7 @@ def StorageRoom():
         globalmethods.continueKey()
         StorageRoom()
     else:
-        print("You can not go there!")
+        print(colored("You can not go there!", "red"))
         globalmethods.continueKey()
         StorageRoom()
 
@@ -192,7 +192,7 @@ def Berries():
         globalmethods.continueKey()
         Berries()
     else:
-        print("You can not go there!")
+        print(colored("You can not go there!", "red"))
         globalmethods.continueKey()
         Berries()
 
@@ -213,7 +213,7 @@ def Bear():
         globalmethods.continueKey()
         Bear()
     else:
-        print("You can not go there!")
+        print(colored("You can not go there!", "red"))
         globalmethods.continueKey()
         Bear()
 

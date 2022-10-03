@@ -3,6 +3,8 @@ from typewriter import *
 from pyfiglet import figlet_format
 import os
 from locations import *
+from colorama import init
+from termcolor import colored
 
 typewriterEff("""It is a cold, misty day in the Himalaya Mountains and you are trying to hike to the peak of Mount Everest, the highest mountain in the world.
 You are with your companions Peter and Maxwell.""")
