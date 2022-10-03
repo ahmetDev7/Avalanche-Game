@@ -60,7 +60,7 @@ def commands(currentLocation, currentLocationText, currentLocationImg):
         elif command == "exit storage room":
             return "exit storage room"
 
-        elif command == "open survival book" or command == "open survivalbook" or command == "read survival book" or command == "read survivalbook" or command == "open book" or command == "read book":
+        elif command == "use survival book" or command == "use book" or command == "open survival book" or command == "open survivalbook" or command == "read survival book" or command == "read survivalbook" or command == "open book" or command == "read book":
             if globalmethods.rippedSurvivalBook == True:
                 print(colored(
                     "You have ripped the Survival Book, you can no longer open it!", "red"))
