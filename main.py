@@ -55,4 +55,4 @@ from locations import *
 # Maybe there is something in your backpack which might be useful.
 # """)
 
-startpoint()
+Startpoint()

@@ -15,6 +15,7 @@ def commands(currentLocation, currentLocationText):
 
         command = input("> ").lower().strip()
 
+        # navigation returns
         if command == "north":
             return "north"
         elif command == "east":
@@ -23,6 +24,34 @@ def commands(currentLocation, currentLocationText):
             return "south"
         elif command == "west":
             return "west"
+
+        # locations returns
+        elif command == "enter cave":
+            return "enter cave"
+
+        elif command == "exit cave":
+            return "exit cave"
+
+        elif command == "leave cave":
+            return "leave cave"
+
+        elif command == "enter shack":
+            return "enter shack"
+
+        elif command == "enter storage room":
+            return "enter storage room"
+
+        elif command == "leave shack":
+            return "leave shack"
+
+        elif command == "exit shack":
+            return "exit shack"
+
+        elif command == "leave storage room":
+            return "leave storage room"
+
+        elif command == "exit storage room":
+            return "exit storage room"
 
         elif command == "open backpack":
             inventory.backpack()

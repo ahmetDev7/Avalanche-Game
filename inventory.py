@@ -24,7 +24,7 @@ def backpack():
             return holdingCurrentItem
         elif backpackinput == "take knife":
             print(colored("You are now holding your knife in your hand.", "green"))
-            holdingCurrentItem = "knife"
+            holdingCurrentItem = "Knife"
             continueKey()
         elif backpackinput == "take survival book":
             print(colored("You are now holding your surival book in your hand.", "green"))
@@ -35,7 +35,8 @@ def backpack():
             holdingCurrentItem = "Mini axe"
             continueKey()
         elif backpackinput == "take mini steelpan":
-            print(colored("You are now holding your mini steelpan in your hand.", "green"))
+            print(
+                colored("You are now holding your mini steelpan in your hand.", "green"))
             holdingCurrentItem = "Mini steelpan"
             continueKey()
         elif backpackinput == "take matches":
